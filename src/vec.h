@@ -68,7 +68,7 @@
 
 
 #define vec_first(v)\
-  *(v)->members
+  (v)->members[0]
 
 
 #define vec_last(v)\

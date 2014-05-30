@@ -1,14 +1,14 @@
 # vec
-A small, type-safe dynamic array implementation in C
+A type-safe dynamic array implementation for C. 
 
 
 ## Installation 
-The [vec.c](src/vec.c?raw=1) and [vec.h](src/vec.h?raw=1) files can
-be dropped into an existing C project and compiled along with it.
+The [vec.c](src/vec.c?raw=1) and [vec.h](src/vec.h?raw=1) files can be dropped
+into an existing C project and compiled along with it.
 
 
 ## Usage
-Before using a vector it should first be intialised using the `vec_init()`
+Before using a vector it should first be initialised using the `vec_init()`
 function.
 ```c
 vec_int_t v;
@@ -17,7 +17,7 @@ vec_push(&v, 123);
 vec_push(&v, 456);
 ```
 
-To access the elements of the vector directly the vectors's `members` field can
+To access the elements of the vector directly the vector's `members` field can
 be used.
 ```c
 printf("%d\n", v.members[1]); /* Prints the value at index 1 */
@@ -28,8 +28,8 @@ The current length of the vector is stored in the `length` field of the vector
 printf("%d\n", v.length); /* Prints the length of the vector */
 ```
 
-When you are done with the vector the `vec_deinit()` function should be
-called on it. This will free any memory the vector has allocated.
+When you are done with the vector the `vec_deinit()` function should be called
+on it. This will free any memory the vector allocated during use.
 ```c
 vec_deinit(&v);
 ```
@@ -38,7 +38,7 @@ vec_deinit(&v);
 ## Vector Types
 To define a new vector type the `vec_t()` macro should be used:
 ```c
-/* Creates the type uint_vec_t for storing unsigned integers */
+/* Creates the type uint_vec_t for storing unsigned ints */
 typedef vec_t(unsigned int) uint_vec_t;
 ```
 
@@ -56,8 +56,8 @@ double          | vec_double_t
 
 ## Functions
 All vector functions are macro functions. The parameter `v` in each function
-should be a pointer to the vector struct which the operation should be
-performed on.
+should be a pointer to the vec struct which the operation is to be performed
+on.
 
 ### vec\_t(T)
 Creates a vec struct for containing values of type `T`.
@@ -67,7 +67,7 @@ typedef vec_t(FILE*) fp_vec_t;
 ```
 
 ### vec\_init(v)
-Initialises the vector, this must be called before the vector is used.
+Initialises the vector, this must be called before the vector can be used. 
 
 ### vec\_deinit(v)
 Deinitialises the vector, freeing the memory the vector allocated during use;
@@ -80,10 +80,10 @@ Pushes a value to the end of the vector.
 Removes and returns the value at the end of the vector.
 
 ### vec\_splice(v, start, count)
-Removes number of values specified in `count` values starting at the index
+Removes the number of values specified by `count`, starting at the index
 `start`.
 ```c
-vec_splice(&v, 2, 4); /* Removes the values at indices 2, 3, 4, 5 */
+vec_splice(&v, 2, 4); /* Removes the values at indices 2, 3, 4 and 5 */
 ```
 
 ### vec\_insert(v, index, val)
@@ -95,7 +95,7 @@ vec_insert(&v, 0, 123);
 ```
 
 ### vec\_sort(v, fn)
-Sorts the members of the vector; `fn` should be a qsort-compatible compare
+Sorts the values of the vector; `fn` should be a qsort-compatible compare
 function.
 
 ### vec\_swap(v, idx1, idx2)
@@ -124,9 +124,9 @@ current number of members.
 Appends the contents of the `v2` vector to the `v` vector.
 
 ### vec\_find(v, val, idx)
-Finds the first occurrence of the value `val` in the vector. `idx` should be a
-integer where the value's index will be written; `idx`'s integer is set to -1
-if `val` could not be found in the vector.
+Finds the first occurrence of the value `val` in the vector. `idx` should be an
+int where the value's index will be written; `idx`'s is set to -1 if `val`
+could not be found in the vector.
 
 ### vec\_remove(v, val)
 Removes the first occurrence of the value `val` from the vector. If the `val`
@@ -138,8 +138,8 @@ containing `4, 5, 6` would contain `6, 5, 4` after reversing.
 
 ### vec\_foreach(v, var, iter)
 Iterates the values of the vector from the first to the last. `var` should be a
-variable of the correct type where the value will be stored with each
-iteration. `iter` should be an integer used to store the index during
+variable of the vector's contained type where the value will be stored with
+each iteration. `iter` should be an int used to store the index during
 iteration.
 ```c
 /* Iterates and prints the value and index of each value in the float vec */
@@ -155,7 +155,7 @@ Iterates the values of the vector from the last to the first. See
 
 ### vec\_foreach\_ptr(v, var, iter)
 Iterates the value pointers of the vector from first to last. `var` should be a
-variable of the correct type's pointer. See `vec_foreach()`.
+variable of the vector's contained type's pointer. See `vec_foreach()`.
 ```c
 /* Iterates and prints the value and index of each value in the float vector */
 int *i; float val;

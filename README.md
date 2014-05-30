@@ -35,13 +35,7 @@ vec_deinit(&v);
 ```
 
 
-## Vector Types
-To define a new vector type the `vec_t()` macro should be used:
-```c
-/* Creates the type uint_vec_t for storing unsigned ints */
-typedef vec_t(unsigned int) uint_vec_t;
-```
-
+## Types
 vec.h provides the following predefined vector types:
 
 Contained Type  | Type name
@@ -52,6 +46,12 @@ int             | vec_int_t
 char            | vec_char_t
 float           | vec_float_t
 double          | vec_double_t
+
+To define a new vector type the `vec_t()` macro should be used:
+```c
+/* Creates the type uint_vec_t for storing unsigned ints */
+typedef vec_t(unsigned int) uint_vec_t;
+```
 
 
 ## Functions

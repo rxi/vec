@@ -160,7 +160,7 @@ variable of the vector's contained type's pointer. See `vec_foreach()`.
 /* Iterates and prints the value and index of each value in the float vector */
 int *i; float val;
 vec_foreach_ptr(&v, val, i) {
-  printf("%d : %f\n", i, &val);
+  printf("%d : %f\n", i, *val);
 }
 ```
 

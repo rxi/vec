@@ -125,8 +125,8 @@ Appends the contents of the `v2` vector to the `v` vector.
 
 ### vec\_find(v, val, idx)
 Finds the first occurrence of the value `val` in the vector. `idx` should be an
-int where the value's index will be written; `idx`'s is set to -1 if `val`
-could not be found in the vector.
+int where the value's index will be written; `idx` is set to -1 if `val` could
+not be found in the vector.
 
 ### vec\_remove(v, val)
 Removes the first occurrence of the value `val` from the vector. If the `val`

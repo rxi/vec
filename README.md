@@ -158,7 +158,7 @@ Iterates the value pointers of the vector from first to last. `var` should be a
 variable of the vector's contained type's pointer. See `vec_foreach()`.
 ```c
 /* Iterates and prints the value and index of each value in the float vector */
-int *i; float val;
+int i; float *val;
 vec_foreach_ptr(&v, val, i) {
   printf("%d : %f\n", i, *val);
 }

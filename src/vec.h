@@ -76,6 +76,10 @@
 #define vec_last(v)\
   (v)->members[(v)->length - 1]
 
+
+#define vec_reserve(v, n)\
+  vec_reserve_(vec_unpack_(v), n)
+
  
 #define vec_compact(v)\
   vec_compact_(vec_unpack_(v))
@@ -146,6 +150,8 @@
 
 
 void vec_expand_(char **members, int *length, int *capacity, int memsz);
+void vec_reserve_(char **members, int *length, int *capacity, int memsz,
+                  int n);
 void vec_compact_(char **members, int *length, int *capacity, int memsz);
 void vec_splice_(char **members, int *length, int *capacity, int memsz,
                  int start, int count);

@@ -158,6 +158,22 @@ int main(void) {
     vec_deinit(&v);
   }
 
+  { test_section("vec_reserve");
+    vec_int_t v;
+    vec_init(&v);
+    vec_reserve(&v, 100);
+    test_assert(v.capacity == 100);
+    vec_reserve(&v, 50);
+    test_assert(v.capacity == 100);
+    vec_deinit(&v);
+    vec_init(&v);
+    vec_push(&v, 123);
+    vec_push(&v, 456);
+    vec_reserve(&v, 200);
+    test_assert(v.capacity == 200);
+    vec_deinit(&v);
+  }
+
   { test_section("vec_compact");
     vec_int_t v;
     vec_init(&v);

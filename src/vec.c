@@ -22,6 +22,16 @@ void vec_expand_(char **members, int *length, int *capacity, int memsz) {
 }
 
 
+void vec_reserve_(char **members, int *length, int *capacity, int memsz,
+                  int n
+) {
+  if (n > *capacity) {
+    *capacity = n;
+    *members = realloc(*members, *capacity * memsz);
+  }
+}
+
+
 void vec_compact_(char **members, int *length, int *capacity, int memsz) {
   if (*length == 0) {
     free(*members);

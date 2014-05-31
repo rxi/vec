@@ -17,6 +17,8 @@
 #define vec_unpack_(v)\
   (char**)&(v)->members, &(v)->length, &(v)->capacity, sizeof(*(v)->members)
 
+#define vec_absindex_(idx, len) (idx) < 0 ? (len) + (idx) : (idx)
+
 
 #define vec_t(T)\
   struct { T *members; int length, capacity; }

@@ -9,8 +9,6 @@
 
 #define VEC_MIN_CAPACITY 4
 
-#define vec_absindex(idx, len) (idx) < 0 ? (len) + (idx) : (idx)
-
 
 void vec_expand_(char **members, int *length, int *capacity, int memsz) {
   if (*length + 1 > *capacity) {
@@ -39,7 +37,7 @@ void vec_compact_(char **members, int *length, int *capacity, int memsz) {
 void vec_splice_(char **members, int *length, int *capacity, int memsz,
                  int start, int count
 ) {
-  start = vec_absindex(start, *length);
+  start = vec_absindex_(start, *length);
   memmove(*members + start * memsz,
           *members + (start + count) * memsz,
           (*length - start - count) * memsz);
@@ -49,7 +47,7 @@ void vec_splice_(char **members, int *length, int *capacity, int memsz,
 void vec_insert_(char **members, int *length, int *capacity, int memsz,
                  int index
 ) {
-  index = vec_absindex(index, *length);
+  index = vec_absindex_(index, *length);
   vec_expand_(members, length, capacity, memsz);
   memmove(*members + (index + 1) * memsz,
           *members + index * memsz,
@@ -61,8 +59,8 @@ void vec_swap_(char **members, int *length, int *capacity, int memsz,
                int idx1, int idx2 
 ) {
   char *tmp;
-  idx1 = vec_absindex(idx1, *length);
-  idx2 = vec_absindex(idx2, *length);
+  idx1 = vec_absindex_(idx1, *length);
+  idx2 = vec_absindex_(idx2, *length);
   vec_expand_(members, length, capacity, memsz);
   tmp = *members + *length * memsz;
   memcpy(tmp, *members + (idx1 * memsz), memsz);

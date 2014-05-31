@@ -116,6 +116,10 @@ vector.
 Returns the last value in the vector. This should not be used on an empty
 vector.
 
+### vec\_reserve(v, n)
+Reserves capacity for at least `n` elements in the given vector;  if `n` is
+less than the current capacity then `vec_reserve()` does nothing.
+
 ### vec\_compact(v)
 Reduces the vector's capacity to the smallest size required to store its
 current number of members.

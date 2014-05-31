@@ -49,7 +49,7 @@
 
 #define vec_insert(v, index, val)\
   ( vec_insert_(vec_unpack_(v), index),\
-    (v)->members[index] = (val),\
+    (v)->members[vec_absindex_(index, (v)->length)] = (val),\
     (v)->length++ )
     
 

@@ -85,6 +85,8 @@ int main(void) {
     vec_insert(&v, 10, 123);
     test_assert(v.members[10] == 123);
     test_assert(v.length == 1001);
+    vec_insert(&v, -2, 678);
+    test_assert(v.members[999] == 678);
     vec_deinit(&v);
   }
 

@@ -101,8 +101,8 @@ function.
 ### vec\_swap(v, idx1, idx2)
 Swaps the values at the indices `idx1` and `idx2` with one another.
 
-### vec\_truncate(v, length)
-Truncates the vector to `length`. If `length` is greater than the vector's
+### vec\_truncate(v, len)
+Truncates the vector's length to `len`. If `len` is greater than the vector's
 current length then no change is made.
 
 ### vec\_clear(v)

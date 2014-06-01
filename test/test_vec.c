@@ -7,16 +7,16 @@
 
 #define test_section(desc)\
   do {\
-    printf("-- %s\n", desc);\
+    printf("--- %s\n", desc);\
   } while (0)
 
-#define test_assert(res)\
+#define test_assert(cond)\
   do {\
-    int pass = res;\
-    printf("line %d : %s\n", __LINE__, pass ? "PASS" : "FAIL");\
-    if (pass) { pass_count++; } else { fail_count++; }\
+    int pass__ = cond;\
+    printf("[%s] %s:%d: ", pass__ ? "PASS" : "FAIL", __FILE__, __LINE__);\
+    printf((strlen(#cond) > 50 ? "%.47s...\n" : "%s\n"), #cond);\
+    if (pass__) { pass_count++; } else { fail_count++; }\
   } while (0)
-
 
 #define test_print_res()\
   do {\

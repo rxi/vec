@@ -55,13 +55,13 @@ void vec_splice_(char **members, int *length, int *capacity, int memsz,
 
 
 void vec_insert_(char **members, int *length, int *capacity, int memsz,
-                 int index
+                 int idx
 ) {
-  index = vec_absindex_(index, *length);
+  idx = vec_absindex_(idx, *length);
   vec_expand_(members, length, capacity, memsz);
-  memmove(*members + (index + 1) * memsz,
-          *members + index * memsz,
-          (*length - index) * memsz);
+  memmove(*members + (idx + 1) * memsz,
+          *members + idx * memsz,
+          (*length - idx) * memsz);
 }
 
 

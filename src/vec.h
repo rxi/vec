@@ -47,9 +47,9 @@
     (v)->length -= (count) )
 
 
-#define vec_insert(v, index, val)\
-  ( vec_insert_(vec_unpack_(v), index),\
-    (v)->members[vec_absindex_(index, (v)->length)] = (val),\
+#define vec_insert(v, idx, val)\
+  ( vec_insert_(vec_unpack_(v), idx),\
+    (v)->members[vec_absindex_(idx, (v)->length)] = (val),\
     (v)->length++ )
     
 
@@ -156,7 +156,7 @@ void vec_compact_(char **members, int *length, int *capacity, int memsz);
 void vec_splice_(char **members, int *length, int *capacity, int memsz,
                  int start, int count);
 void vec_insert_(char **members, int *length, int *capacity, int memsz,
-                 int index);
+                 int idx);
 void vec_swap_(char **members, int *length, int *capacity, int memsz,
                int idx1, int idx2);
 

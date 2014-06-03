@@ -122,7 +122,7 @@ less than the current capacity then `vec_reserve()` does nothing.
 
 ### vec\_compact(v)
 Reduces the vector's capacity to the smallest size required to store its
-current number of members.
+current number of values.
 
 ### vec\_extend(v, v2)
 Appends the contents of the `v2` vector to the `v` vector.
@@ -137,7 +137,7 @@ Removes the first occurrence of the value `val` from the vector. If the `val`
 is not contained in the vector then `vec_remove()` does nothing.
 
 ### vec\_reverse(v)
-Reverses all the members of the vector in place. For example, a vector
+Reverses the order of the vector's values in place. For example, a vector
 containing `4, 5, 6` would contain `6, 5, 4` after reversing.
 
 ### vec\_foreach(v, var, iter)

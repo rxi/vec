@@ -17,8 +17,6 @@
 #define vec_unpack_(v)\
   (char**)&(v)->members, &(v)->length, &(v)->capacity, sizeof(*(v)->members)
 
-#define vec_absindex_(idx, len) ((idx) < 0 ? (len) + (idx) : (idx))
-
 
 #define vec_t(T)\
   struct { T *members; int length, capacity; }
@@ -49,7 +47,7 @@
 
 #define vec_insert(v, idx, val)\
   ( vec_insert_(vec_unpack_(v), idx),\
-    (v)->members[vec_absindex_(idx, (v)->length)] = (val),\
+    (v)->members[idx] = (val),\
     (v)->length++ )
     
 
@@ -115,7 +113,7 @@
   do {\
     int i__ = (v)->length / 2;\
     while (i__--) {\
-      vec_swap((v), i__, -(i__ + 1));\
+      vec_swap((v), i__, (v)->length - (i__ + 1));\
     }\
   } while (0)
 

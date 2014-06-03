@@ -47,7 +47,6 @@ void vec_compact_(char **members, int *length, int *capacity, int memsz) {
 void vec_splice_(char **members, int *length, int *capacity, int memsz,
                  int start, int count
 ) {
-  start = vec_absindex_(start, *length);
   memmove(*members + start * memsz,
           *members + (start + count) * memsz,
           (*length - start - count) * memsz);
@@ -57,7 +56,6 @@ void vec_splice_(char **members, int *length, int *capacity, int memsz,
 void vec_insert_(char **members, int *length, int *capacity, int memsz,
                  int idx
 ) {
-  idx = vec_absindex_(idx, *length);
   vec_expand_(members, length, capacity, memsz);
   memmove(*members + (idx + 1) * memsz,
           *members + idx * memsz,
@@ -69,8 +67,6 @@ void vec_swap_(char **members, int *length, int *capacity, int memsz,
                int idx1, int idx2 
 ) {
   char *tmp;
-  idx1 = vec_absindex_(idx1, *length);
-  idx2 = vec_absindex_(idx2, *length);
   vec_expand_(members, length, capacity, memsz);
   tmp = *members + *length * memsz;
   memcpy(tmp, *members + (idx1 * memsz), memsz);

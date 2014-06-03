@@ -70,7 +70,7 @@ int main(void) {
     test_assert(v.members[0] == 10);
     vec_splice(&v, 10, 10);
     test_assert(v.members[10] == 30);
-    vec_splice(&v, -50, 50);
+    vec_splice(&v, v.length - 50, 50);
     test_assert(v.members[v.length - 1] == 949);
     vec_deinit(&v);
   }
@@ -85,7 +85,7 @@ int main(void) {
     vec_insert(&v, 10, 123);
     test_assert(v.members[10] == 123);
     test_assert(v.length == 1001);
-    vec_insert(&v, -2, 678);
+    vec_insert(&v, v.length - 2, 678);
     test_assert(v.members[999] == 678);
     vec_deinit(&v);
   }

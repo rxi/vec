@@ -44,8 +44,8 @@ int main(void) {
     vec_init(&v);
     int i;
     for (i = 0; i < 1000; i++) vec_push(&v, i * 2);
-    test_assert(v.members[1] == 2);
-    test_assert(v.members[999] == 999 * 2);
+    test_assert(v.data[1] == 2);
+    test_assert(v.data[999] == 999 * 2);
     vec_deinit(&v);
   }
 
@@ -67,11 +67,11 @@ int main(void) {
     int i;
     for (i = 0; i < 1000; i++) vec_push(&v, i);
     vec_splice(&v, 0, 10);
-    test_assert(v.members[0] == 10);
+    test_assert(v.data[0] == 10);
     vec_splice(&v, 10, 10);
-    test_assert(v.members[10] == 30);
+    test_assert(v.data[10] == 30);
     vec_splice(&v, v.length - 50, 50);
-    test_assert(v.members[v.length - 1] == 949);
+    test_assert(v.data[v.length - 1] == 949);
     vec_deinit(&v);
   }
 
@@ -80,13 +80,13 @@ int main(void) {
     vec_init(&v);
     int i;
     for (i = 0; i < 1000; i++) vec_insert(&v, 0, i);
-    test_assert(v.members[0] == 999);
-    test_assert(v.members[v.length - 1] == 0);
+    test_assert(v.data[0] == 999);
+    test_assert(v.data[v.length - 1] == 0);
     vec_insert(&v, 10, 123);
-    test_assert(v.members[10] == 123);
+    test_assert(v.data[10] == 123);
     test_assert(v.length == 1001);
     vec_insert(&v, v.length - 2, 678);
-    test_assert(v.members[999] == 678);
+    test_assert(v.data[999] == 678);
     vec_deinit(&v);
   }
 
@@ -97,9 +97,9 @@ int main(void) {
     vec_push(&v, -1);
     vec_push(&v, 0);
     vec_sort(&v, intptrcmp);
-    test_assert(v.members[0] == -1);
-    test_assert(v.members[1] == 0);
-    test_assert(v.members[2] == 3);
+    test_assert(v.data[0] == -1);
+    test_assert(v.data[1] == 0);
+    test_assert(v.data[2] == 3);
     vec_deinit(&v);
   }
 
@@ -110,11 +110,11 @@ int main(void) {
     vec_push(&v, 'b');
     vec_push(&v, 'c');
     vec_swap(&v, 0, 2);
-    test_assert(v.members[0] == 'c' && v.members[2] == 'a');
+    test_assert(v.data[0] == 'c' && v.data[2] == 'a');
     vec_swap(&v, 0, 1);
-    test_assert(v.members[0] == 'b' && v.members[1] == 'c');
+    test_assert(v.data[0] == 'b' && v.data[1] == 'c');
     vec_swap(&v, 1, 2);
-    test_assert(v.members[1] == 'a' && v.members[2] == 'c');
+    test_assert(v.data[1] == 'a' && v.data[2] == 'c');
     vec_deinit(&v);
   }
 
@@ -194,8 +194,8 @@ int main(void) {
     vec_push(&v2, 56);
     vec_push(&v2, 78);
     vec_extend(&v, &v2);
-    test_assert(v.members[0] == 12 && v.members[1] == 34 &&
-                v.members[2] == 56 && v.members[3] == 78);
+    test_assert(v.data[0] == 12 && v.data[1] == 34 &&
+                v.data[2] == 56 && v.data[3] == 78);
     test_assert(v.length == 4);
     vec_deinit(&v);
     vec_deinit(&v2);
@@ -225,8 +225,8 @@ int main(void) {
     vec_remove(&v, '_');
     test_assert(v.length == 26);
     vec_remove(&v, 'c');
-    test_assert(v.members[0] == 'a' && v.members[1] == 'b' &&
-                v.members[2] == 'd' && v.members[3] == 'e');
+    test_assert(v.data[0] == 'a' && v.data[1] == 'b' &&
+                v.data[2] == 'd' && v.data[3] == 'e');
     test_assert(v.length == 25);
     vec_deinit(&v);
   }
@@ -240,8 +240,8 @@ int main(void) {
     vec_push(&v, 'd');
     vec_reverse(&v);
     test_assert(v.length == 4);
-    test_assert(v.members[0] == 'd' && v.members[1] == 'c' &&
-                v.members[2] == 'b' && v.members[3] == 'a');
+    test_assert(v.data[0] == 'd' && v.data[1] == 'c' &&
+                v.data[2] == 'b' && v.data[3] == 'a');
     vec_deinit(&v);
   }
 

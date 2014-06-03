@@ -17,10 +17,10 @@ vec_push(&v, 123);
 vec_push(&v, 456);
 ```
 
-To access the elements of the vector directly the vector's `members` field can
-be used.
+To access the elements of the vector directly the vector's `data` field can be
+used.
 ```c
-printf("%d\n", v.members[1]); /* Prints the value at index 1 */
+printf("%d\n", v.data[1]); /* Prints the value at index 1 */
 ```
 
 The current length of the vector is stored in the `length` field of the vector

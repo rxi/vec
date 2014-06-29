@@ -65,6 +65,7 @@ void vec_swap_(char **data, int *length, int *capacity, int memsz,
                int idx1, int idx2 
 ) {
   char *tmp;
+  if (idx1 == idx2) return;
   vec_expand_(data, length, capacity, memsz);
   tmp = *data + *length * memsz;
   memcpy(tmp, *data + (idx1 * memsz), memsz);

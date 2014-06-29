@@ -45,6 +45,11 @@
     (v)->length -= (count) )
 
 
+#define vec_swapsplice(v, start, count)\
+  ( vec_swapsplice_(vec_unpack_(v), start, count),\
+    (v)->length -= (count) )
+
+
 #define vec_insert(v, idx, val)\
   ( vec_insert_(vec_unpack_(v), idx),\
     (v)->data[idx] = (val),\
@@ -152,6 +157,8 @@ void vec_reserve_(char **data, int *length, int *capacity, int memsz, int n);
 void vec_compact_(char **data, int *length, int *capacity, int memsz);
 void vec_splice_(char **data, int *length, int *capacity, int memsz,
                  int start, int count);
+void vec_swapsplice_(char **data, int *length, int *capacity, int memsz,
+                     int start, int count);
 void vec_insert_(char **data, int *length, int *capacity, int memsz,
                  int idx);
 void vec_swap_(char **data, int *length, int *capacity, int memsz,

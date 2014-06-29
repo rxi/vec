@@ -75,6 +75,18 @@ int main(void) {
     vec_deinit(&v);
   }
 
+  { test_section("vec_swapsplice");
+    vec_int_t v;
+    vec_init(&v);
+    int i;
+    for (i = 0; i < 10; i++) vec_push(&v, i);
+    vec_swapsplice(&v, 0, 3);
+    test_assert(v.data[0] == 7 && v.data[1] == 8 && v.data[2] == 9);
+    vec_swapsplice(&v, v.length - 1, 1);
+    test_assert(v.data[v.length - 1] == 5);
+    vec_deinit(&v);
+  }
+
   { test_section("vec_insert");
     vec_int_t v;
     vec_init(&v);

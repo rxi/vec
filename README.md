@@ -86,6 +86,11 @@ Removes the number of values specified by `count`, starting at the index
 vec_splice(&v, 2, 4); /* Removes the values at indices 2, 3, 4 and 5 */
 ```
 
+### vec\_swapsplice(v, start, count)
+Removes the number of values specified by `count`, starting at the index
+`start`; the removed values are replaced with the last `count` values of the
+vector. This does not preserve ordering but is O(1).
+
 ### vec\_insert(v, idx, val)
 Inserts the value `val` at index `idx` shifting the elements after the index
 to make room for the new value.

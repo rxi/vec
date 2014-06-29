@@ -51,6 +51,15 @@ void vec_splice_(char **data, int *length, int *capacity, int memsz,
 }
 
 
+void vec_swapsplice_(char **data, int *length, int *capacity, int memsz,
+                     int start, int count
+) {
+  memmove(*data + start * memsz,
+          *data + (*length - count) * memsz,
+          count * memsz);
+}
+
+
 void vec_insert_(char **data, int *length, int *capacity, int memsz,
                  int idx
 ) {

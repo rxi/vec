@@ -127,6 +127,8 @@ int main(void) {
     test_assert(v.data[0] == 'b' && v.data[1] == 'c');
     vec_swap(&v, 1, 2);
     test_assert(v.data[1] == 'a' && v.data[2] == 'c');
+    vec_swap(&v, 1, 1);
+    test_assert(v.data[1] == 'a');
     vec_deinit(&v);
   }
 

@@ -73,12 +73,17 @@ void vec_insert_(char **data, int *length, int *capacity, int memsz,
 void vec_swap_(char **data, int *length, int *capacity, int memsz,
                int idx1, int idx2 
 ) {
-  char *tmp;
+  unsigned char *a, *b, tmp;
+  int count;
   if (idx1 == idx2) return;
-  vec_expand_(data, length, capacity, memsz);
-  tmp = *data + *length * memsz;
-  memcpy(tmp, *data + (idx1 * memsz), memsz);
-  memcpy(*data + (idx1 * memsz), *data + (idx2 * memsz), memsz);
-  memcpy(*data + (idx2 * memsz), tmp, memsz);
+  a = (unsigned char*) *data + idx1 * memsz;
+  b = (unsigned char*) *data + idx2 * memsz;
+  count = memsz;
+  while (count--) {
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+    a++, b++;
+  }
 }
 

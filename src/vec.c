@@ -7,13 +7,11 @@
 
 #include "vec.h"
 
-#define VEC_MIN_CAPACITY 4
-
 
 void vec_expand_(char **data, int *length, int *capacity, int memsz) {
   if (*length + 1 > *capacity) {
     if (*capacity == 0) {
-      *capacity = VEC_MIN_CAPACITY;
+      *capacity = 1;
     } else {
       *capacity <<= 1;
     }

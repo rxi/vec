@@ -46,6 +46,7 @@ int main(void) {
     for (i = 0; i < 1000; i++) vec_push(&v, i * 2);
     test_assert(v.data[1] == 2);
     test_assert(v.data[999] == 999 * 2);
+    test_assert(vec_push(&v, 10) == 0);
     vec_deinit(&v);
   }
 
@@ -99,6 +100,7 @@ int main(void) {
     test_assert(v.length == 1001);
     vec_insert(&v, v.length - 2, 678);
     test_assert(v.data[999] == 678);
+    test_assert(vec_insert(&v, 10, 123) == 0);
     vec_deinit(&v);
   }
 
@@ -185,6 +187,7 @@ int main(void) {
     vec_push(&v, 456);
     vec_reserve(&v, 200);
     test_assert(v.capacity == 200);
+    test_assert(vec_reserve(&v, 300) == 0);
     vec_deinit(&v);
   }
 
@@ -196,6 +199,7 @@ int main(void) {
     vec_truncate(&v, 3);
     vec_compact(&v);
     test_assert(v.length == v.capacity);
+    test_assert(vec_compact(&v) == 0);
     vec_deinit(&v);
   }
 

@@ -22,6 +22,7 @@ int vec_expand_(char **data, int *length, int *capacity, int memsz) {
 
 
 int vec_reserve_(char **data, int *length, int *capacity, int memsz, int n) {
+  (void) length;
   if (n > *capacity) {
     void *ptr = realloc(*data, n * memsz);
     if (ptr == NULL) return -1;
@@ -65,6 +66,7 @@ int vec_insert_(char **data, int *length, int *capacity, int memsz,
 void vec_splice_(char **data, int *length, int *capacity, int memsz,
                  int start, int count
 ) {
+  (void) capacity;
   memmove(*data + start * memsz,
           *data + (start + count) * memsz,
           (*length - start - count) * memsz);
@@ -74,6 +76,7 @@ void vec_splice_(char **data, int *length, int *capacity, int memsz,
 void vec_swapsplice_(char **data, int *length, int *capacity, int memsz,
                      int start, int count
 ) {
+  (void) capacity;
   memmove(*data + start * memsz,
           *data + (*length - count) * memsz,
           count * memsz);
@@ -85,6 +88,8 @@ void vec_swap_(char **data, int *length, int *capacity, int memsz,
 ) {
   unsigned char *a, *b, tmp;
   int count;
+  (void) length;
+  (void) capacity;
   if (idx1 == idx2) return;
   a = (unsigned char*) *data + idx1 * memsz;
   b = (unsigned char*) *data + idx2 * memsz;

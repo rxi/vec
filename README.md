@@ -74,7 +74,8 @@ Deinitialises the vector, freeing the memory the vector allocated during use;
 this should be called when we're finished with a vector.
 
 ### vec\_push(v, val)
-Pushes a value to the end of the vector.
+Pushes a value to the end of the vector. Returns 0 if the operation was
+successful, otherwise -1 is returned and the vector remains unchanged.
 
 ### vec\_pop(v)
 Removes and returns the value at the end of the vector.
@@ -98,6 +99,8 @@ to make room for the new value.
 /* Inserts the value 123 at the beginning of the vec */
 vec_insert(&v, 0, 123);
 ```
+Returns 0 if the operation was successful, otherwise -1 is returned and the
+vector remains unchanged.
 
 ### vec\_sort(v, fn)
 Sorts the values of the vector; `fn` should be a qsort-compatible compare
@@ -123,11 +126,14 @@ vector.
 
 ### vec\_reserve(v, n)
 Reserves capacity for at least `n` elements in the given vector;  if `n` is
-less than the current capacity then `vec_reserve()` does nothing.
+less than the current capacity then `vec_reserve()` does nothing. Returns 0 if
+the operation was successful, otherwise -1 is returned and the vector remains
+unchanged.
 
 ### vec\_compact(v)
 Reduces the vector's capacity to the smallest size required to store its
-current number of values.
+current number of values. Returns 0 if the operation is successful, otherwise
+-1 is returned and the vector remains unchanged.
 
 ### vec\_extend(v, v2)
 Appends the contents of the `v2` vector to the `v` vector.

@@ -32,8 +32,8 @@
 
 
 #define vec_push(v, val)\
-  ( vec_expand_(vec_unpack_(v)),\
-    (v)->data[(v)->length++] = (val) )
+  ( vec_expand_(vec_unpack_(v)) ? -1 :\
+    ((v)->data[(v)->length++] = (val)), 0 )
 
 
 #define vec_pop(v)\
@@ -51,9 +51,8 @@
 
 
 #define vec_insert(v, idx, val)\
-  ( vec_insert_(vec_unpack_(v), idx),\
-    (v)->data[idx] = (val),\
-    (v)->length++ )
+  ( vec_insert_(vec_unpack_(v), idx) ? -1 :\
+    ((v)->data[idx] = (val)), (v)->length++, 0 )
     
 
 #define vec_sort(v, fn)\
@@ -152,15 +151,15 @@
 
 
 
-void vec_expand_(char **data, int *length, int *capacity, int memsz);
-void vec_reserve_(char **data, int *length, int *capacity, int memsz, int n);
-void vec_compact_(char **data, int *length, int *capacity, int memsz);
+int vec_expand_(char **data, int *length, int *capacity, int memsz);
+int vec_reserve_(char **data, int *length, int *capacity, int memsz, int n);
+int vec_compact_(char **data, int *length, int *capacity, int memsz);
+int vec_insert_(char **data, int *length, int *capacity, int memsz,
+                int idx);
 void vec_splice_(char **data, int *length, int *capacity, int memsz,
                  int start, int count);
 void vec_swapsplice_(char **data, int *length, int *capacity, int memsz,
                      int start, int count);
-void vec_insert_(char **data, int *length, int *capacity, int memsz,
-                 int idx);
 void vec_swap_(char **data, int *length, int *capacity, int memsz,
                int idx1, int idx2);
 

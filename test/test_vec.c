@@ -157,9 +157,9 @@ int main(void) {
   { test_section("vec_first");
     vec_int_t v;
     vec_init(&v);
-    vec_push(&v, 0xcafef00d);
+    vec_push(&v, 0xf00d);
     vec_push(&v, 0);
-    test_assert(vec_first(&v) == 0xcafef00d);
+    test_assert(vec_first(&v) == 0xf00d);
     vec_deinit(&v);
   }
 
@@ -167,8 +167,8 @@ int main(void) {
     vec_int_t v;
     vec_init(&v);
     vec_push(&v, 0);
-    vec_push(&v, 0xcafef00d);
-    test_assert(vec_last(&v) == 0xcafef00d);
+    vec_push(&v, 0xf00d);
+    test_assert(vec_last(&v) == 0xf00d);
     vec_deinit(&v);
   }
 

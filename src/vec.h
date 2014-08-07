@@ -56,14 +56,14 @@
 
 #define vec_splice(v, start, count)\
   ( vec_checkidx_((v)->length, start),\
-    vec_checkidx_((v)->length, start + count - 1),\
+    vec_checkidx_((v)->length, (start) + (count) - 1),\
     vec_splice_(vec_unpack_(v), start, count),\
     (v)->length -= (count) )
 
 
 #define vec_swapsplice(v, start, count)\
   ( vec_checkidx_((v)->length, start),\
-    vec_checkidx_((v)->length, start + count - 1),\
+    vec_checkidx_((v)->length, (start) + (count) - 1),\
     vec_swapsplice_(vec_unpack_(v), start, count),\
     (v)->length -= (count) )
 

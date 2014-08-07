@@ -101,6 +101,8 @@ int main(void) {
     vec_insert(&v, v.length - 2, 678);
     test_assert(v.data[999] == 678);
     test_assert(vec_insert(&v, 10, 123) == 0);
+    vec_insert(&v, v.length, 789);
+    test_assert(v.data[v.length - 1] == 789);
     vec_deinit(&v);
   }
 

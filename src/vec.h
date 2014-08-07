@@ -45,7 +45,8 @@
 
 
 #define vec_pop(v)\
-  (v)->data[--(v)->length]
+  ( vec_checkidx_((v)->length, 0),\
+    (v)->data[--(v)->length] )
 
 
 #define vec_at(v, idx)\

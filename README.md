@@ -53,6 +53,10 @@ To define a new vector type the `vec_t()` macro should be used:
 typedef vec_t(unsigned int) uint_vec_t;
 ```
 
+## Debug Mode
+If the macro `VEC_DEBUG` is defined then all functions will do bounds checking
+and abort if a check fails.
+
 
 ## Functions
 All vector functions are macro functions. The parameter `v` in each function
@@ -79,6 +83,11 @@ successful, otherwise -1 is returned and the vector remains unchanged.
 
 ### vec\_pop(v)
 Removes and returns the value at the end of the vector.
+
+### vec\_at(v, idx)
+Returns the value at the given index `idx`. Using `vec_at()` as opposed to
+accessing the `.data` field directly has the advantage of out-of-bounds
+checking when VEC_DEBUG is enabled.
 
 ### vec\_splice(v, start, count)
 Removes the number of values specified by `count`, starting at the index

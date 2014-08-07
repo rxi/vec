@@ -48,6 +48,11 @@
   (v)->data[--(v)->length]
 
 
+#define vec_at(v, idx)\
+  ( vec_checkidx_((v)->length, idx),\
+    (v)->data[idx] )
+
+
 #define vec_splice(v, start, count)\
   ( vec_checkidx_((v)->length, start),\
     vec_checkidx_((v)->length, start + count - 1),\

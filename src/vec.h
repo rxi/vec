@@ -18,7 +18,7 @@
   #include <assert.h>
   #define vec_checkidx_(len, idx) assert((idx) >= 0 && (idx) < (len))
 #else
-  #define vec_checkidx_(len, idx) (void) (0)
+  #define vec_checkidx_(len, idx) ((void) 0)
 #endif
 
 

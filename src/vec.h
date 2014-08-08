@@ -14,14 +14,6 @@
 #define VEC_VERSION "0.2.0"
 
 
-#ifdef VEC_DEBUG
-  #include <assert.h>
-  #define vec_checkidx_(len, idx) assert((idx) >= 0 && (idx) < (len))
-#else
-  #define vec_checkidx_(len, idx) ((void) 0)
-#endif
-
-
 #define vec_unpack_(v)\
   (char**)&(v)->data, &(v)->length, &(v)->capacity, sizeof(*(v)->data)
 
@@ -45,32 +37,21 @@
 
 
 #define vec_pop(v)\
-  ( vec_checkidx_((v)->length, 0),\
-    (v)->data[--(v)->length] )
-
-
-#define vec_at(v, idx)\
-  ( vec_checkidx_((v)->length, idx),\
-    (v)->data[idx] )
+  (v)->data[--(v)->length]
 
 
 #define vec_splice(v, start, count)\
-  ( vec_checkidx_((v)->length, start),\
-    vec_checkidx_((v)->length, (start) + (count) - 1),\
-    vec_splice_(vec_unpack_(v), start, count),\
+  ( vec_splice_(vec_unpack_(v), start, count),\
     (v)->length -= (count) )
 
 
 #define vec_swapsplice(v, start, count)\
-  ( vec_checkidx_((v)->length, start),\
-    vec_checkidx_((v)->length, (start) + (count) - 1),\
-    vec_swapsplice_(vec_unpack_(v), start, count),\
+  ( vec_swapsplice_(vec_unpack_(v), start, count),\
     (v)->length -= (count) )
 
 
 #define vec_insert(v, idx, val)\
-  ( vec_checkidx_((v)->length + 1, idx),\
-    vec_insert_(vec_unpack_(v), idx) ? -1 :\
+  ( vec_insert_(vec_unpack_(v), idx) ? -1 :\
     ((v)->data[idx] = (val)), (v)->length++, 0 )
     
 
@@ -79,9 +60,7 @@
 
 
 #define vec_swap(v, idx1, idx2)\
-  ( vec_checkidx_((v)->length, idx1),\
-    vec_checkidx_((v)->length, idx2),\
-    vec_swap_(vec_unpack_(v), idx1, idx2) )
+  vec_swap_(vec_unpack_(v), idx1, idx2)
 
 
 #define vec_truncate(v, len)\
@@ -93,13 +72,11 @@
 
 
 #define vec_first(v)\
-  ( vec_checkidx_((v)->length, 0),\
-    (v)->data[0] )
+  (v)->data[0]
 
 
 #define vec_last(v)\
-  ( vec_checkidx_((v)->length, 0),\
-    (v)->data[(v)->length - 1] )
+  (v)->data[(v)->length - 1]
 
 
 #define vec_reserve(v, n)\
@@ -185,6 +162,7 @@ void vec_swapsplice_(char **data, int *length, int *capacity, int memsz,
                      int start, int count);
 void vec_swap_(char **data, int *length, int *capacity, int memsz,
                int idx1, int idx2);
+
 
 typedef vec_t(void*) vec_void_t;
 typedef vec_t(char*) vec_str_t;

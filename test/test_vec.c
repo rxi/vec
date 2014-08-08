@@ -62,18 +62,6 @@ int main(void) {
     vec_deinit(&v);
   }
 
-  { test_section("vec_at");
-    vec_int_t v;
-    vec_init(&v);
-    vec_push(&v, 'a');
-    vec_push(&v, 'b');
-    vec_push(&v, 'c');
-    test_assert(vec_at(&v, 0) == 'a');
-    test_assert(vec_at(&v, 1) == 'b');
-    test_assert(vec_at(&v, 2) == 'c');
-    vec_deinit(&v);
-  }
-
   { test_section("vec_splice");
     vec_int_t v;
     vec_init(&v);

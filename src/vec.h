@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define VEC_VERSION "0.2.0"
+#define VEC_VERSION "0.2.1"
 
 
 #define vec_unpack_(v)\

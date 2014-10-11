@@ -50,6 +50,17 @@ int main(void) {
     vec_deinit(&v);
   }
 
+  { test_section("vec_pushm");
+    vec_int_t v;
+    vec_init(&v);
+    int i[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    vec_pushm(&v, i, 5);
+    test_assert(v.data[4] == 4);
+    vec_pushm(&v, i + 5, 5);
+    test_assert(v.data[9] == 9);
+    vec_deinit(&v);
+  }
+
   { test_section("vec_pop");
     vec_int_t v;
     vec_init(&v);

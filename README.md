@@ -77,7 +77,7 @@ this should be called when we're finished with a vector.
 Pushes a value to the end of the vector. Returns 0 if the operation was
 successful, otherwise -1 is returned and the vector remains unchanged.
 
-### vec\_pushm(v, ptr, count)
+### vec\_pusharr(v, ptr, count)
 Pushes `count` values starting at `ptr` to the end of the vector. Returns 0
 if the operation was successful, otherwise -1 is returned and the vector
 remains unchanged.

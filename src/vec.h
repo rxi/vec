@@ -37,8 +37,8 @@
 
 
 #define vec_pusharr(v, ptr, count)\
-  (1 ? vec_pusharr_(vec_unpack_(v), ptr, count) :\
-     (v)->data == ptr )
+  ( 1 ? vec_pusharr_(vec_unpack_(v), ptr, count) :\
+    (v)->data == ptr )
 
 
 #define vec_pop(v)\

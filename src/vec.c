@@ -51,7 +51,7 @@ int vec_compact_(char **data, int *length, int *capacity, int memsz) {
 }
 
 
-int vec_pushm_(char **data, int *length, int *capacity, int memsz, void* ptr,
+int vec_pusharr_(char **data, int *length, int *capacity, int memsz, void* ptr,
                int count
 ) {
   int err = vec_reserve_(data, length, capacity, memsz, *length + count);

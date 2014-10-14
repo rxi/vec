@@ -160,7 +160,7 @@ int vec_expand_(char **data, int *length, int *capacity, int memsz);
 int vec_reserve_(char **data, int *length, int *capacity, int memsz, int n);
 int vec_compact_(char **data, int *length, int *capacity, int memsz);
 int vec_pusharr_(char **data, int *length, int *capacity, int memsz, void* ptr,
-               int count);
+                 int count);
 int vec_insert_(char **data, int *length, int *capacity, int memsz,
                 int idx);
 void vec_splice_(char **data, int *length, int *capacity, int memsz,

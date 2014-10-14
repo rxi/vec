@@ -57,7 +57,7 @@ int vec_pushm_(char **data, int *length, int *capacity, int memsz, void* ptr,
   int err = vec_reserve_(data, length, capacity, memsz, *length + count);
   if (err) return err;
   memcpy(*data + (*length * memsz), ptr, count * memsz);
-  *length = *capacity;
+  *length += count;
   return 0;
 }
 

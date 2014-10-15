@@ -102,12 +102,7 @@
 
 
 #define vec_extend(v, v2)\
-  do {\
-    int i__;\
-    for (i__ = 0; i__ < (v2)->length; i__++) {\
-      vec_push((v), (v2)->data[i__]);\
-    }\
-  } while (0)
+  vec_pusharr((v), (v2)->data, (v2)->length)
 
 
 #define vec_find(v, val, idx)\

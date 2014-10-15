@@ -135,6 +135,10 @@ Reduces the vector's capacity to the smallest size required to store its
 current number of values. Returns 0 if the operation is successful, otherwise
 -1 is returned and the vector remains unchanged.
 
+### vec\_pusharr(v, arr, count)
+Pushes the contents of the array `arr` to the end of the vector. `count` should
+be the number of elements in the array.
+
 ### vec\_extend(v, v2)
 Appends the contents of the `v2` vector to the `v` vector.
 

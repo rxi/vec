@@ -38,14 +38,14 @@ vec_deinit(&v);
 ## Types
 vec.h provides the following predefined vector types:
 
-Contained Type  | Type name
-----------------|----------------------------------
-void*           | vec_void_t
-char*           | vec_str_t
-int             | vec_int_t
-char            | vec_char_t
-float           | vec_float_t
-double          | vec_double_t
+| Contained Type  | Type name     |
+|-----------------|---------------|
+| void*           | vec_void_t    |
+| char*           | vec_str_t     |
+| int             | vec_int_t     |
+| char            | vec_char_t    |
+| float           | vec_float_t   |
+| double          | vec_double_t  |
 
 To define a new vector type the `vec_t()` macro should be used:
 ```c

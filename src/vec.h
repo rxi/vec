@@ -87,6 +87,20 @@
   vec_compact_(vec_unpack_(v))
 
 
+#define vec_pusharr(v, arr, count)\
+  do {\
+    int i__, n__ = (count);\
+    int len__ = (v)->length + n__;\
+    int cap__ = (v)->capacity > 0 ? (v)->capacity : 1;\
+    while (cap__ < len__) cap__ <<= 1;\
+    if (n__ == 0) break;\
+    if (vec_reserve((v), cap__) != 0) break;\
+    for (i__ = 0; i__ < n__; i__++) {\
+      (v)->data[(v)->length++] = (arr)[i__];\
+    }\
+  } while (0)
+
+
 #define vec_extend(v, v2)\
   do {\
     int i__;\

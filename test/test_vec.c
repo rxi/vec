@@ -205,6 +205,23 @@ int main(void) {
     vec_deinit(&v);
   }
 
+  { test_section("vec_pusharr");
+    int a[5] = { 5, 6, 7, 8, 9 };
+    vec_double_t v;
+    vec_init(&v);
+    vec_push(&v, 1);
+    vec_push(&v, 2);
+    vec_pusharr(&v, a, 5);
+    test_assert(v.data[0] == 1);
+    test_assert(v.data[2] == 5);
+    test_assert(v.data[6] == 9);
+    vec_deinit(&v);
+    vec_init(&v);
+    vec_pusharr(&v, a, 5);
+    test_assert(v.data[0] == 5);
+    vec_deinit(&v);
+  }
+
   { test_section("vec_extend");
     vec_int_t v, v2;
     vec_init(&v);

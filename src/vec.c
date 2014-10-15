@@ -33,6 +33,16 @@ int vec_reserve_(char **data, int *length, int *capacity, int memsz, int n) {
 }
 
 
+int vec_reserve_po2_(
+  char **data, int *length, int *capacity, int memsz, int n
+) {
+  int n2 = 1;
+  if (n == 0) return 0;
+  while (n2 < n) n2 <<= 1;
+  return vec_reserve_(data, length, capacity, memsz, n2);
+}
+
+
 int vec_compact_(char **data, int *length, int *capacity, int memsz) {
   if (*length == 0) {
     free(*data);

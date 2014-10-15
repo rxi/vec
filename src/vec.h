@@ -90,11 +90,7 @@
 #define vec_pusharr(v, arr, count)\
   do {\
     int i__, n__ = (count);\
-    int len__ = (v)->length + n__;\
-    int cap__ = (v)->capacity > 0 ? (v)->capacity : 1;\
-    while (cap__ < len__) cap__ <<= 1;\
-    if (n__ == 0) break;\
-    if (vec_reserve((v), cap__) != 0) break;\
+    if (vec_reserve_po2_(vec_unpack_(v), (v)->length + n__) != 0) break;\
     for (i__ = 0; i__ < n__; i__++) {\
       (v)->data[(v)->length++] = (arr)[i__];\
     }\
@@ -162,6 +158,8 @@
 
 int vec_expand_(char **data, int *length, int *capacity, int memsz);
 int vec_reserve_(char **data, int *length, int *capacity, int memsz, int n);
+int vec_reserve_po2_(char **data, int *length, int *capacity, int memsz,
+                     int n);
 int vec_compact_(char **data, int *length, int *capacity, int memsz);
 int vec_insert_(char **data, int *length, int *capacity, int memsz,
                 int idx);

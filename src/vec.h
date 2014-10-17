@@ -36,6 +36,11 @@
     ((v)->data[(v)->length++] = (val), 0), 0 )
 
 
+#define vec_pusharr(v, ptr, count)\
+  ( 1 ? vec_pusharr_(vec_unpack_(v), ptr, count) :\
+    (v)->data == ptr )
+
+
 #define vec_pop(v)\
   (v)->data[--(v)->length]
 
@@ -161,6 +166,8 @@ int vec_reserve_(char **data, int *length, int *capacity, int memsz, int n);
 int vec_reserve_po2_(char **data, int *length, int *capacity, int memsz,
                      int n);
 int vec_compact_(char **data, int *length, int *capacity, int memsz);
+int vec_pusharr_(char **data, int *length, int *capacity, int memsz, void* ptr,
+                 int count);
 int vec_insert_(char **data, int *length, int *capacity, int memsz,
                 int idx);
 void vec_splice_(char **data, int *length, int *capacity, int memsz,

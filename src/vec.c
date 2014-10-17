@@ -61,6 +61,17 @@ int vec_compact_(char **data, int *length, int *capacity, int memsz) {
 }
 
 
+int vec_pusharr_(char **data, int *length, int *capacity, int memsz, void* ptr,
+                 int count
+) {
+  int err = vec_reserve_(data, length, capacity, memsz, *length + count);
+  if (err) return err;
+  memcpy(*data + (*length * memsz), ptr, count * memsz);
+  *length += count;
+  return 0;
+}
+
+
 int vec_insert_(char **data, int *length, int *capacity, int memsz,
                  int idx
 ) {

@@ -106,6 +106,18 @@ vector remains unchanged.
 Sorts the values of the vector; `fn` should be a qsort-compatible compare
 function.
 
+### vec\_bsearch(v, key, idx, fn)
+Performs a binary search for `key` on the vector; the elements must be in sorted 
+order according to the qsort-compatible function `fn`. The value pointed to by
+`idx` is filled with index of `key` if found, -1 if not found.
+```c
+/* Searches the vector for the key 4*/
+int key = 4;
+int idx = -1;
+vec_bsearch(&v, &key, &idx, compareIntegers);
+/* idx != -1 if key was found... */
+```
+
 ### vec\_swap(v, idx1, idx2)
 Swaps the values at the indices `idx1` and `idx2` with one another.
 

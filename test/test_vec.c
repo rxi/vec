@@ -119,6 +119,28 @@ int main(void) {
     vec_deinit(&v);
   }
 
+  { test_section("vec_bsearch");
+    vec_int_t v;
+    vec_init(&v);
+    vec_push(&v, 0);
+    vec_push(&v, 1);
+    vec_push(&v, 4);
+    vec_push(&v, 14);
+    vec_push(&v, 30);
+    vec_push(&v, 35);
+	int key = 4;
+	int idx = -1;
+    vec_bsearch(&v, &key, &idx, intptrcmp);
+    test_assert(idx == 2);
+	key = 30;
+	vec_bsearch(&v, &key, &idx, intptrcmp);
+    test_assert(idx == 4);
+	key = 40;
+	vec_bsearch(&v, &key, &idx, intptrcmp);
+    test_assert(idx == -1);
+    vec_deinit(&v);
+  }
+
   { test_section("vec_swap");
     vec_int_t v;
     vec_init(&v);

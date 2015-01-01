@@ -59,6 +59,14 @@
   qsort((v)->data, (v)->length, sizeof(*(v)->data), fn)
 
 
+#define vec_bsearch(v, key, idx, fn) \
+  do {\
+    char* ptr = NULL; \
+    ptr = bsearch(key, (v)->data, (v)->length, sizeof(*(v)->data), fn); \
+    *idx = ptr ? (ptr - (char*)(v)->data) / sizeof(*(v)->data) : -1; \
+  } while (0)
+
+
 #define vec_swap(v, idx1, idx2)\
   vec_swap_(vec_unpack_(v), idx1, idx2)
 

@@ -155,6 +155,7 @@
         --(iter))
 
 
+
 #if defined(VEC_FREE) && (defined(VEC_REALLOC)
 // Both defined, no error
 #elif !defined(VEC_REALLOC) && !defined(VEC_FREE)

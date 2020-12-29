@@ -156,12 +156,12 @@
 
 
 
-#if defined(VEC_FREE) && (defined(VEC_REALLOC)
+#if defined(VEC_FREE) && defined(VEC_REALLOC)
 // Both defined, no error
 #elif !defined(VEC_REALLOC) && !defined(VEC_FREE)
 // Neither defined, use stdlib
-#define VEC_FREE(x) free
-#define VEC_REALLOC(x) realloc
+#define VEC_FREE free
+#define VEC_REALLOC realloc
 #else
 #error "Must define all or none of VEC_FREE and VEC_REALLOC."
 #endif

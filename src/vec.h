@@ -27,7 +27,7 @@
 
 
 #define vec_deinit(v)\
-  ( free((v)->data),\
+  ( VEC_FREE((v)->data),\
     vec_init(v) ) 
 
 
@@ -154,6 +154,17 @@
         (iter) >= 0 && (((var) = &(v)->data[(iter)]), 1);\
         --(iter))
 
+
+
+#if defined(VEC_FREE) && defined(VEC_REALLOC)
+// Both defined, no error
+#elif !defined(VEC_REALLOC) && !defined(VEC_FREE)
+// Neither defined, use stdlib
+#define VEC_FREE free
+#define VEC_REALLOC realloc
+#else
+#error "Must define all or none of VEC_FREE and VEC_REALLOC."
+#endif
 
 
 int vec_expand_(char **data, int *length, int *capacity, int memsz);

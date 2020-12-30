@@ -34,6 +34,9 @@ on it. This will free any memory the vector allocated during use.
 vec_deinit(&v);
 ```
 
+To use your own custom memory allocator, define both `VEC_FREE` and `VEC_REALLOC`
+before including `vec.h`, and they will be used instead of the standard library's
+`free` and `realloc`. 
 
 ## Types
 vec.h provides the following predefined vector types:
